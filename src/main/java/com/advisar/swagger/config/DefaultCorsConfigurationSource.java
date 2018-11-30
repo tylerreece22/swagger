@@ -10,10 +10,10 @@ import org.springframework.web.filter.CorsFilter;
 /*
     Copy and paste this configuration
     inside whatever application you want to
-    have API documentation for. This file in not necessary
-    inside this application
+    have API documentation for and uncomment the annotations.
+    This file in not necessary inside this application.
  */
-@Configuration
+//@Configuration
 public class DefaultCorsConfigurationSource {
     @Bean
     public FilterRegistrationBean corsFilter() {
