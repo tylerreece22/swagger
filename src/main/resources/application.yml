@@ -3,10 +3,10 @@ server:
 documentation:
   swagger:
     services:
-    -
-      name: Auth Service
-      url: http://localhost:9001/v2/api-docs
-      version: 2.0
+#    -
+#      name: Auth Service
+#      url: http://localhost:9001/v2/api-docs
+#      version: 2.0
     -
       name: Human Service
       url: http://petstore.swagger.io/v2/swagger.json
