@@ -14,11 +14,11 @@ import org.springframework.web.filter.CorsFilter;
     This file in not necessary inside this application.
  */
 //@Configuration
-public class DefaultCorsConfigurationSource {
+public class CorsConfiguration {
     @Bean
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
+        org.springframework.web.cors.CorsConfiguration config = new org.springframework.web.cors.CorsConfiguration();
         config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
