@@ -20,7 +20,8 @@ import java.util.List;
 @EnableSwagger2
 @ConfigurationProperties(prefix = "documentation.swagger")
 public class SwaggerServicesConfig extends WebMvcConfigurationSupport {
-    public static List<SwaggerService> services;
+
+    private List<SwaggerService> services;
 
     @Bean
     public Docket productApi() {
@@ -30,12 +31,6 @@ public class SwaggerServicesConfig extends WebMvcConfigurationSupport {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaData());
-    }
-
-    public static class SwaggerService {
-        public String name;
-        public String url;
-        public String version;
     }
 
     private ApiInfo metaData() {
@@ -57,4 +52,43 @@ public class SwaggerServicesConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+
+    public List<SwaggerService> getServices() {
+        return services;
+    }
+
+    public void setServices(List<SwaggerService> services) {
+        this.services = services;
+    }
+
+    public static class SwaggerService {
+        public String name;
+        public String url;
+        public String version;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getVersion() {
+            return version;
+        }
+
+        public void setVersion(String version) {
+            this.version = version;
+        }
+    }
+
 }
