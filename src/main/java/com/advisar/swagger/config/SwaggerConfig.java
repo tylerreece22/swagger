@@ -1,6 +1,5 @@
 package com.advisar.swagger.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,15 +13,15 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.List;
-
-@Configuration
-@EnableSwagger2
-@ConfigurationProperties(prefix = "documentation.swagger")
-public class SwaggerServicesConfig extends WebMvcConfigurationSupport {
-
-    private List<SwaggerService> services;
-
+/*
+    Copy and paste this configuration
+    inside whatever application you want to
+    have API documentation for and uncomment the annotations.
+    This file in not necessary inside this application.
+ */
+//@Configuration
+//@EnableSwagger2
+public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -31,6 +30,7 @@ public class SwaggerServicesConfig extends WebMvcConfigurationSupport {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaData());
+
     }
 
     private ApiInfo metaData() {
@@ -52,43 +52,4 @@ public class SwaggerServicesConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
-
-    public List<SwaggerService> getServices() {
-        return services;
-    }
-
-    public void setServices(List<SwaggerService> services) {
-        this.services = services;
-    }
-
-    public static class SwaggerService {
-        public String name;
-        public String url;
-        public String version;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getVersion() {
-            return version;
-        }
-
-        public void setVersion(String version) {
-            this.version = version;
-        }
-    }
-
 }

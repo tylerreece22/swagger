@@ -13,18 +13,20 @@ import java.util.List;
 @Primary
 @Configuration
 class PropertyResourceProvider implements SwaggerResourcesProvider {
+
     @Autowired
     private SwaggerServicesConfig config;
 
     @Override
     public List<SwaggerResource> get() {
         LinkedList<SwaggerResource> resources = new LinkedList<>();
-        resources.add(swaggerResource(
-                "OAUTH",
-                "http://192.168.56.1:8080/v2/api-docs",
-                "2.0"));
+        config.getServices().stream().forEach(service ->
+                resources.add(swaggerResource(
+                        service.name,
+                        service.url,
+                        service.version)));
         return resources;
-    }
+}
 
     private SwaggerResource swaggerResource(String name, String location, String version) {
         SwaggerResource swaggerResource = new SwaggerResource();
